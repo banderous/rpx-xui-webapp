@@ -13,8 +13,6 @@ properties([
 
 @Library("Infrastructure")
 
-// Disable pact testing on pipeline
-//
 import uk.gov.hmcts.contino.AppPipelineDsl
 
 def type      = "nodejs"
@@ -54,8 +52,6 @@ withPipeline(type, product, component) {
     enableAksStagingDeployment()
     disableLegacyDeployment()
 
-// Disable pact testing on pipeline
-//
     enablePactAs([
       AppPipelineDsl.PactRoles.CONSUMER
     ])
