@@ -255,4 +255,7 @@ export class CaseSearchComponent implements OnInit, OnDestroy {
     }
   }
 
+  onClick($event: any) {
+    console.warn($event);
+  }
 }

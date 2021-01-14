@@ -13,7 +13,7 @@
           [store]="store"
           [fromFeatureStore]="fromCasesFeature">
           <ccd-search-filters-wrapper #ccdComponent
-            (onApply)="applyFilter($event)"  
+            (onApply)="applyFilter($event)"
           >
           </ccd-search-filters-wrapper>
         </exui-ccd-connector>
@@ -28,8 +28,10 @@
           [caseState]="caseState"
           [caseFilterFG]="fg"
           [resultView]="resultView"
+          (clickCase)="onClick($event)"
           [paginationMetadata]="paginationMetadata"
           [metadataFields]="metadataFields"
+
           (changePage)="applyChangePage($event)"
           caseLinkUrlTemplate="../case-details/case_id"
           [consumerSortingEnabled]="elasticSearchFlag"

@@ -5,14 +5,18 @@ LABEL maintainer = "HMCTS Expert UI <https://github.com/hmcts>"
 COPY --chown=hmcts:hmcts package.json yarn.lock ./
 
 FROM base as build
-
-RUN yarn
+RUN yarn install
 
 COPY --chown=hmcts:hmcts . .
-RUN yarn build && rm -r node_modules/ && rm -r ~/.cache/yarn
+COPY strategy.js ./node_modules/passport-oauth2/lib/strategy.js
+#RUN yarn lint
+RUN yarn build
 
-FROM base as runtime
-COPY --from=build $WORKDIR ./
-USER hmcts
 EXPOSE 3000
-CMD [ "yarn", "start" ]
+#CMD [ "yarn", "start" ]
+CMD [ "/bin/bash"]
+
+#FROM base as runtime
+#COPY --from=build $WORKDIR ./
+#USER hmcts
+

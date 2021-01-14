@@ -53,13 +53,13 @@ xuiNode.on(AUTH.EVENT.AUTHENTICATE_SUCCESS, successCallback)
 export const getXuiNodeMiddleware = () => {
 
     const idamWebUrl = getConfigValue(SERVICES_IDAM_LOGIN_URL)
-    const authorizationUrl = `${idamWebUrl}/login`
+    const authorizationUrl = `${idamWebUrl}/protocol/openid-connect/auth`
     const secret = getConfigValue(IDAM_SECRET)
     const idamClient = getConfigValue(SERVICES_IDAM_CLIENT_ID)
     const issuerUrl = getConfigValue(SERVICES_IDAM_ISS_URL)
     const idamApiPath = getConfigValue(SERVICES_IDAM_API_URL)
     const s2sSecret = getConfigValue(S2S_SECRET)
-    const tokenUrl = `${getConfigValue(SERVICES_IDAM_API_URL)}/oauth2/token`
+    const tokenUrl = `${getConfigValue(SERVICES_IDAM_API_URL)}/protocol/openid-connect/token`
 
     //TODO: we can move these out into proper config at some point to tidy up even further
     const options: AuthOptions = {
@@ -68,7 +68,7 @@ export const getXuiNodeMiddleware = () => {
         callbackURL: getConfigValue(SERVICES_IDAM_OAUTH_CALLBACK_URL),
         clientID: idamClient,
         clientSecret: secret,
-        discoveryEndpoint: `${idamWebUrl}/o/.well-known/openid-configuration`,
+        discoveryEndpoint: `${idamWebUrl}/.well-known/openid-configuration`,
         issuerURL: issuerUrl,
         logoutURL: idamApiPath,
         responseTypes: ['code'],
@@ -79,7 +79,12 @@ export const getXuiNodeMiddleware = () => {
         useRoutes: true,
     }
 
-    const baseStoreOptions = {
+  logger._logger.info('IDAM auto URL')
+  logger._logger.info(options.discoveryEndpoint)
+  logger._logger.info(secret)
+  logger._logger.info(options.issuerURL)
+  logger._logger.info(tokenUrl)
+  const baseStoreOptions = {
         cookie: {
             httpOnly: true,
             maxAge: 28800000,
