@@ -10,6 +10,7 @@ import { CaseHomeComponent } from './containers/case-home/case-home.component';
 import { CaseListComponent } from './containers/case-list/case-list.component';
 import { CaseSearchComponent } from './containers/case-search/case-search.component';
 import { CreateCaseEventTriggerResolver } from './resolvers/create-case-event-trigger.resolver';
+import {RedirectGuard} from "../app/redirect-guard.service";
 
 
 export const ROUTES: Routes = [
@@ -92,8 +93,9 @@ export const ROUTES: Routes = [
           component: CaseDetailsHomeComponent,
           resolve: { case: CaseResolver },
           runGuardsAndResolvers: 'always',
+
           children: caseViewRouting,
-          canActivate: [ HealthCheckGuard ],
+          canActivate: [ HealthCheckGuard , RedirectGuard],
           data: {
             title: 'Case Details'
           }
