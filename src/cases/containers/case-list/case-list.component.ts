@@ -84,7 +84,7 @@ export class CaseListComponent implements OnInit, OnDestroy {
   public jurisdictions: Jurisdiction[];
   public selectedCases: SearchResultViewItem[] = [];
 
-  public elasticSearchFlag: boolean = false;
+  public elasticSearchFlag: boolean = true;
   public elasticSearchFlagSubsription: Subscription;
 
   public sortParameters;

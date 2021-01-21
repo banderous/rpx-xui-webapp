@@ -17,8 +17,8 @@ export class SearchFilterService {
   ) { }
 
   search(payload, isElasticSearchEnabled: boolean = false): Observable<any> {
-
     const { jurisdictionId, caseTypeId, metadataFilters, caseFilters, view, sortParameters } = this.getParams(payload);
+    isElasticSearchEnabled = true;
 
     // return this.ccdSearchService.search(jurisdictionId, caseTypeId, metadataFilters, caseFilters, view) as any;
     return isElasticSearchEnabled ?

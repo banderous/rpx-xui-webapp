@@ -53,7 +53,7 @@ export class CaseSearchComponent implements OnInit, OnDestroy {
   state: any;
   toggleButtonName: string;
 
-  public elasticSearchFlag: boolean = false;
+  public elasticSearchFlag: boolean = true;
   public elasticSearchFlagSubsription: Subscription;
 
   public sortParameters;
