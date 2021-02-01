@@ -21,7 +21,8 @@ export class SearchFilterService {
     isElasticSearchEnabled = true;
 
     // return this.ccdSearchService.search(jurisdictionId, caseTypeId, metadataFilters, caseFilters, view) as any;
-    return isElasticSearchEnabled ?
+    console.warn(caseTypeId)
+    return caseTypeId !== 'DIVORCE' ?
           this.ccdSearchService.searchCases(caseTypeId, metadataFilters, caseFilters, view, sortParameters) as any :
           this.ccdSearchService.search(jurisdictionId, caseTypeId, metadataFilters, caseFilters, view) as any;
   }
